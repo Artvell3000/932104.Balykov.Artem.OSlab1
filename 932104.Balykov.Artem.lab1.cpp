@@ -24,6 +24,7 @@ int main() {
 	buffer = "";
 	setlocale(LC_ALL, "ru");
 	thread thread1(thread_send);
+	thread1.detach();
 
 	while (true) {
 		second_semaphore.acquire();
@@ -32,6 +33,5 @@ int main() {
 		first_semaphore.release();
 	}
 
-	thread1.join();
 	return 0;
 }
