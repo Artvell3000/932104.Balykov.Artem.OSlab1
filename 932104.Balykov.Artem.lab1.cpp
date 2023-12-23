@@ -14,7 +14,7 @@ void thread_send() {
 	while (true) {
 		this_thread::sleep_for(chrono::seconds(1));
 		buffer = "sms";
-		cout << "Событие отправлено" << buffer << endl;
+		cout << "Событие отправлено " << buffer << endl;
 		second_semaphore.release();
 		first_semaphore.acquire();
 	}
@@ -27,7 +27,7 @@ int main() {
 
 	while (true) {
 		second_semaphore.acquire();
-		cout << "Событие обработано" << buffer << endl;
+		cout << "Событие обработано " << buffer << endl;
 		buffer = "";
 		first_semaphore.release();
 	}
