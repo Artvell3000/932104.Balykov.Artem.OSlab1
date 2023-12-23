@@ -20,21 +20,18 @@ void thread_send() {
 	}
 }
 
-void thread_recv() {
+int main() {
+	buffer = "";
+	setlocale(LC_ALL, "ru");
+	thread thread1(thread_send);
+
 	while (true) {
 		second_semaphore.acquire();
 		cout << "Событие обработано" << buffer << endl;
 		buffer = "";
 		first_semaphore.release();
 	}
-}
 
-int main() {
-	buffer = "";
-	setlocale(LC_ALL, "ru");
-	thread thread1(thread_send);
-	thread thread2(thread_recv);
 	thread1.join();
-	thread2.join();
 	return 0;
 }
